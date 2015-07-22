@@ -1,0 +1,10 @@
+---
+- name: restart RMQ
+  service: name=rabbitmq-server state=restarted
+
+- name: start sensu server
+  service: name=sensu-server state=started
+
+- name: start sensu api
+  service: name=sensu-api state=started
+  

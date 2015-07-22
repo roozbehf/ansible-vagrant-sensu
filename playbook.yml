@@ -1,0 +1,8 @@
+---
+- hosts: all
+  roles:
+    - role: erlang
+    - role: rabbitmq
+    - role: redis
+    - role: sensu
+    

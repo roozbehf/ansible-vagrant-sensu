@@ -1,0 +1,15 @@
+---
+- name: add RMQ repo
+  apt_repository: repo='deb http://www.rabbitmq.com/debian/ testing main' state=present
+  register: add_rmq_repo
+
+- name: add RMQ key
+  apt_key: url=http://www.rabbitmq.com/rabbitmq-signing-key-public.asc state=present
+  register: add_rmq_key
+
+- name: install RMQ
+  when: add_rmq_repo|success and add_rmq_key|success
+  apt: pkg=rabbitmq-server state=installed update_cache=true
+  register: install_rmq
+  notify:
+    - enable RMQ

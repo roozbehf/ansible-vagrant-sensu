@@ -1,0 +1,3 @@
+---
+- name: enable RMQ
+  service: name=rabbitmq-server enabled=yes

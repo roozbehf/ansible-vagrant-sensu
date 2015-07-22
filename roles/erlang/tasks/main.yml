@@ -1,0 +1,3 @@
+---
+- name: install Erlang
+  apt: pkg=erlang-nox state=installed update_cache=true
