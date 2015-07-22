@@ -1,6 +1,8 @@
 # Sensu Installation using Vagrant with Ansible
 
-This is an evolving example to install sensu on Ubuntu using Vagrant with Ansible.
+This is an evolving example of a Vagrant configuration and an Ansible playbook to create a Sensu host and client.
+
+I created this example following the official [Sensu installation instructions](https://sensuapp.org/docs/latest/installation-overview).
 
 Please report or correct any errors you may find. :-)
 
