@@ -2,9 +2,9 @@
 - name: restart RMQ
   service: name=rabbitmq-server state=restarted
 
-- name: start sensu server
-  service: name=sensu-server state=started
-
-- name: start sensu api
-  service: name=sensu-api state=started
-  
+- name: restart sensu server
+  service: name=sensu-{{ api }} state=restarted
+  with_items:
+    - server
+    - api
+  when: install_sensu_server
