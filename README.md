@@ -2,9 +2,12 @@
 
 This is an evolving example of a Vagrant configuration and an Ansible playbook to create a Sensu host and client.
 
-I created this example following the official [Sensu installation instructions](https://sensuapp.org/docs/latest/installation-overview).
+## Notes
+- I created this example following the official [Sensu installation instructions](https://sensuapp.org/docs/latest/installation-overview).
 
-Please report or correct any errors you may find. :-)
+- In making this configuration, I learnt a lot from the playbooks of [Mayeu](https://github.com/Mayeu). Thanks Mayeu!
+
+- Please report or correct any errors you may find. :-)
 
 ## Instructions
 1. Make sure that you have installed [VirtualBox](https://www.virtualbox.org), [Vagrant](https://www.vagrantup.com) and [Ansible](http://www.ansible.com/home).
