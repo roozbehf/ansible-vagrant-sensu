@@ -4,3 +4,6 @@
 # control the installation of client or server
 install_sensu_client: true
 install_sensu_server: true
+
+sensu_user:  sensu
+sensu_group: sensu

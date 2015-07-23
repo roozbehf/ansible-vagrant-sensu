@@ -21,13 +21,14 @@
   rabbitmq_vhost: name={{ rmq_sensu_vhost }} state=present
 
 - name: add RMQ sensu user
-  rabbitmq_user: name={{ rmq_sensu_user_name }}
-                 password={{ rmq_sensu_user_pass }}
-                 vhost={{ rmq_sensu_vhost }}
-                 configure_priv=.*
-                 read_priv=.*
-                 write_priv=.*
-                 state=present
+  rabbitmq_user: >
+    name={{ rmq_sensu_user_name }}
+    password={{ rmq_sensu_user_pass }}
+    vhost={{ rmq_sensu_vhost }}
+    configure_priv=.*
+    read_priv=.*
+    write_priv=.*
+    state=present
 
 # - name: config RMQ
 #   when: install_rmq|success
@@ -36,28 +37,52 @@
 #   notify:
 #     - restart RMQ
 
-- name: config sensu connections
-  template:
-    src=sensu.config.json.j2
-    dest=/etc/sensu/config.json
-    owner=sensu
-    group=sensu
+- name: config sensu RMQ
+  template: >
+    src=sensu_rmq_config.json.j2
+    dest=/etc/sensu/conf.d/rmq.json
+    owner={{ sensu_user }}
+    group={{ sensu_group }}
+    mode=0640
+    backup=yes
+
+- name: config sensu redis
+  template: >
+    src=sensu_redis_config.json.j2
+    dest=/etc/sensu/conf.d/redis.json
+    owner={{ sensu_user }}
+    group={{ sensu_group }}
+    mode=0640
+    backup=yes
+
+- name: config sensu API
+  template: >
+    src=sensu_api_config.json.j2
+    dest=/etc/sensu/conf.d/api.json
+    owner={{ sensu_user }}
+    group={{ sensu_group }}
     mode=0640
     backup=yes
 
 - name: add mem check
-  copy: src=checks/check_mem.json
-        dest=/etc/sensu/conf.d/check_mem.json
-        owner=sensu
-        group=sensu
+  copy: >
+    src=checks/check_mem.json
+    dest=/etc/sensu/conf.d/check_mem.json
+    owner={{ sensu_user }}
+    group={{ sensu_group }}
 
 - name: add default handler
-  copy: src=handlers/default_handler.json
-        dest=/etc/sensu/conf.d/default_handler.json
-        owner=sensu
-        group=sensu
+  copy: >
+    src=handlers/default_handler.json
+    dest=/etc/sensu/conf.d/default_handler.json
+    owner={{ sensu_user }}
+    group={{ sensu_group }}
 
 - name: set sensu config folder permissions
-  file: path=/etc/sensu owner=sensu group=sensu recurse=yes
+  file: >
+    path=/etc/sensu
+    owner={{ sensu_user }}
+    group={{ sensu_group }}
+    recurse=yes
   notify:
     - restart sensu server
