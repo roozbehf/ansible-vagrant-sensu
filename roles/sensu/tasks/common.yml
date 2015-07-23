@@ -11,24 +11,9 @@
   when: add_sensu_repo|success and add_sensu_key|success
   apt: pkg=sensu state=installed update_cache=true
   register: install_sensu
-  notify:
-    - enable RMQ
 
 # - name: config RMQ-sensu SSL keys
 #   script: config_ssl_keys.sh
-
-- name: add RMQ sensu vhost
-  rabbitmq_vhost: name={{ rmq_sensu_vhost }} state=present
-
-- name: add RMQ sensu user
-  rabbitmq_user: >
-    name={{ rmq_sensu_user_name }}
-    password={{ rmq_sensu_user_pass }}
-    vhost={{ rmq_sensu_vhost }}
-    configure_priv=.*
-    read_priv=.*
-    write_priv=.*
-    state=present
 
 # - name: config RMQ
 #   when: install_rmq|success

@@ -11,3 +11,10 @@ sensu_server_group: sensu
 
 rmq_sensu_vhost: /sensu
 rmq_sensu_user_name: sensu
+rmq_sensu_user_pass: 3knsad134as
+
+rmq_hostname: "127.0.0.1"
+
+# RabbitMQ vhost definitions
+rmq_vhost_definitions: []
+rmq_users_definitions: []

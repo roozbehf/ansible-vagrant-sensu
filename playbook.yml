@@ -1,8 +1,33 @@
 ---
-- hosts: all
+- hosts: sensu_server_client
+  vars:
+    - install_sensu_server: true
+    - install_sensu_client: true
+    - sensu_client_hostname: "sensu-server-client"
+    - sensu_client_address: "192.168.60.2"
   roles:
-    - role: erlang
-    - role: rabbitmq
-    - role: redis
-    - role: sensu
-    
+    - erlang
+    - redis
+    - rabbitmq
+    - sensu
+
+# - hosts: sensu_server
+#   vars:
+#     - sensu_install_server: true
+#     - sensu_install_client: false
+#     - sensu_client_hostname: "sensu-server"
+#     - sensu_client_address: "192.168.60.3"
+#   roles:
+#     - erlang
+#     - redis
+#     - rabbitmq
+#     - sensu
+#
+- hosts: sensu_client
+  vars:
+    - install_sensu_server: false
+    - install_sensu_client: true
+    - sensu_client_hostname: "sensu-client"
+    - sensu_client_address: "192.168.60.4"
+  roles:
+    - sensu

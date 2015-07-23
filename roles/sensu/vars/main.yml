@@ -1,1 +1,11 @@
 ---
+rmq_hostname: "192.168.60.2"
+
+# Set the rabbitmq vhost
+rmq_vhost_definitions:
+  - name:     "{{ rmq_sensu_vhost }}"
+
+rmq_users_definitions:
+  - vhost:    "{{ rmq_sensu_vhost }}"
+    user:     "{{ rmq_sensu_user_name }}"
+    password: "{{ rmq_sensu_user_pass }}"
