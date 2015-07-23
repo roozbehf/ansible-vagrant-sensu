@@ -12,3 +12,9 @@ Please report or correct any errors you may find. :-)
 2. Run ```vagrant up```. When it is done, the machine should be up and running with a sensu server installed.
 
 3. When you are done playing around, you can turn off the machine (```vagrant halt```) or destroy it by ```vagrant destory```.
+
+## Testing the Installation
+
+On a single server-client machine, you should be able to see memory check reports logged by the client almost every 10 seconds:
+
+```sudo tail -f /var/log/sensu/sensu-client.log```

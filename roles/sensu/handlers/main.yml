@@ -3,8 +3,12 @@
   service: name=rabbitmq-server state=restarted
 
 - name: restart sensu server
-  service: name=sensu-{{ api }} state=restarted
+  service: name=sensu-{{ item }} state=restarted
   with_items:
     - server
     - api
   when: install_sensu_server
+
+- name: restart sensu client
+  service: name=sensu-client state=restarted
+  when: install_sensu_client

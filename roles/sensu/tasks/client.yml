@@ -1,0 +1,24 @@
+---
+- name: download mem-check plugin
+  get_url: >
+    url=http://sensuapp.org/docs/0.20/files/check-mem.sh
+    dest=/etc/sensu/plugins/check-mem.sh
+    mode="ug+x"
+    owner=sensu
+    group=sensu
+
+- name: generate client config file
+  template: >
+    src=client.json.j2
+    dest=/etc/sensu/conf.d/client.json
+    owner=sensu
+    group=sensu
+    mode=0640
+    backup=yes
+
+- name: set sensu config folder permissions
+  file: path=/etc/sensu owner=sensu group=sensu recurse=yes
+
+- name: start sensu client
+  service: name=sensu-client state=started
+  

@@ -13,3 +13,4 @@
   register: install_rmq
   notify:
     - enable RMQ
+    - start RMQ
