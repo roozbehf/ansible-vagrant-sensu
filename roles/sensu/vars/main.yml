@@ -1,3 +1,1 @@
 ---
-rmq_sensu_vhost: /sensu
-rmq_sensu_user_name: sensu

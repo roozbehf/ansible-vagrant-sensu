@@ -5,5 +5,9 @@
 install_sensu_client: true
 install_sensu_server: true
 
-sensu_user:  sensu
-sensu_group: sensu
+# Server Settings
+sensu_server_user:  sensu
+sensu_server_group: sensu
+
+rmq_sensu_vhost: /sensu
+rmq_sensu_user_name: sensu

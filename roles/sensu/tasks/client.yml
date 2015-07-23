@@ -4,23 +4,23 @@
     url=http://sensuapp.org/docs/0.20/files/check-mem.sh
     dest=/etc/sensu/plugins/check-mem.sh
     mode="ug+x"
-    owner={{ sensu_user }}
-    group={{ sensu_group }}
+    owner={{ sensu_server_user }}
+    group={{ sensu_server_group }}
 
 - name: generate client config file
   template: >
     src=client.json.j2
     dest=/etc/sensu/conf.d/client.json
-    owner={{ sensu_user }}
-    group={{ sensu_group }}
+    owner={{ sensu_server_user }}
+    group={{ sensu_server_group }}
     mode=0640
     backup=yes
 
 - name: set sensu config folder permissions
   file: >
     path=/etc/sensu
-    owner={{ sensu_user }}
-    group={{ sensu_group }}
+    owner={{ sensu_server_user }}
+    group={{ sensu_server_group }}
     recurse=yes
 
 - name: start sensu client
